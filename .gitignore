@@ -1,0 +1,5 @@
+conf/.env
+.idea/
+
+# Using this for pyenv in development environment.
+.python-version
