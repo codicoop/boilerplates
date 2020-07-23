@@ -20,4 +20,6 @@ RUN pip install "poetry==$POETRY_VERSION"
 RUN poetry config virtualenvs.create false
 RUN pwd
 RUN ls -la
-RUN poetry install --no-dev --no-interaction --no-ansi
+# If in production, remember to remove dev packages:
+# RUN poetry install --no-dev --no-interaction --no-ansi
+RUN poetry install --no-interaction --no-ansi
