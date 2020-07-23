@@ -1,5 +1,6 @@
 conf/.env
 .idea/
+/docker-develop/postgres-data/
 
 # Using this for pyenv in development environment.
 .python-version

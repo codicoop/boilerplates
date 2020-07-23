@@ -1,0 +1,39 @@
+version: "3.3"
+
+services:
+
+  # http://127.0.0.1:8060 or http://localhost:8060
+  app_develop:
+    restart: on-failure
+    container_name: app_develop
+    build:
+      context: ..
+      dockerfile: ./docker-develop/Dockerfile
+    environment:
+      - DB_HOST=db
+    # The WSGI application name is the django app name you chose when doing django-admin startproject.
+    command: gunicorn conf.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ../:/srv
+    depends_on:
+      - db
+    #entrypoint: ["sh", "-c", "sleep 2073600"]
+
+  db:
+    container_name: app_develop_db
+    image: postgres:12
+    volumes:
+      - ./postgres-data/app_develop:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+
+  nginx:
+    container_name: app_develop_nginx
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d
+      - ../:/srv
+    ports:
+      - 8060:80
+    depends_on:
+      - app_develop
