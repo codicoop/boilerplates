@@ -16,10 +16,18 @@ services:
     volumes:
       - ../:/srv
     ports:
-      - 80:8000
+      - 8060:8000
     depends_on:
       - db
     #entrypoint: ["sh", "-c", "sleep 2073600"]
+
+  # http://localhost:8080/
+  adminer:
+    container_name: app_adminer
+    image: adminer
+    restart: on-failure
+    ports:
+      - 8080:8080
 
   db:
     container_name: app_develop_db
