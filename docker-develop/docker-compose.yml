@@ -1,11 +1,14 @@
-version: "3.3"
+version: "3.5"
+
+networks:
+  develop_network_name:
+    name: develop_network_name
 
 services:
-
   # http://127.0.0.1:8060 or http://localhost:8060
   app_develop:
     restart: on-failure
-    container_name: app_develop
+    container_name: develop_projectname_app
     build:
       context: ..
       dockerfile: ./docker-develop/Dockerfile
@@ -20,19 +23,23 @@ services:
     depends_on:
       - db
     #entrypoint: ["sh", "-c", "sleep 2073600"]
+    networks:
+      - develop_network_name
 
   # http://localhost:8080/
   adminer:
-    container_name: app_adminer
+    container_name: develop_projectname_adminer
     image: adminer
     restart: on-failure
     ports:
       - 8080:8080
+    networks:
+      - develop_network_name
 
   db:
-    container_name: app_develop_db
+    container_name: develop_projectname_db
     image: postgres:12
-    volumes:
-      - ./postgres-data/app_develop:/var/lib/postgresql/data/
     environment:
-      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    networks:
+      - develop_network_name

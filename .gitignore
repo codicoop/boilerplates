@@ -3,7 +3,6 @@ conf/.env
 .vscode/
 static
 __pycache__
-/docker-develop/postgres-data/
 conf/maintenance_mode_state.txt
 
 # Using this for pyenv in development environment.
