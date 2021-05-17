@@ -1,12 +1,12 @@
 version: "3.5"
 
 networks:
-  develop_network_name:
-    name: develop_network_name
+  develop_projectname_network:
+    name: develop_projectname_network
 
 services:
   # http://127.0.0.1:8060 or http://localhost:8060
-  app_develop:
+  develop_projectname_app:
     restart: on-failure
     container_name: develop_projectname_app
     build:
@@ -24,22 +24,22 @@ services:
       - db
     #entrypoint: ["sh", "-c", "sleep 2073600"]
     networks:
-      - develop_network_name
+      - develop_projectname_network
 
   # http://localhost:8080/
-  adminer:
+  develop_projectname_adminer:
     container_name: develop_projectname_adminer
     image: adminer
     restart: on-failure
     ports:
       - 8080:8080
     networks:
-      - develop_network_name
+      - develop_projectname_network
 
-  db:
+  develop_projectname_db:
     container_name: develop_projectname_db
     image: postgres:12
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
-      - develop_network_name
+      - develop_projectname_network
