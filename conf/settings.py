@@ -34,6 +34,7 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # SMTP
 EMAIL_HOST = env('EMAIL_HOST')
