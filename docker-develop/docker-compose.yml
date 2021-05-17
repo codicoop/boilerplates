@@ -21,7 +21,7 @@ services:
     ports:
       - 8060:8000
     depends_on:
-      - db
+      - develop_projectname_db
     #entrypoint: ["sh", "-c", "sleep 2073600"]
     networks:
       - develop_projectname_network
