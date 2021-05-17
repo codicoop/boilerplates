@@ -68,8 +68,8 @@ INSTALLED_APPS = [
     'maintenance_mode',
     'apps.users',
     'django.contrib.postgres',
-    'django.contrib.admin',
     'grappelli',  # Place before contrib.admin
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
