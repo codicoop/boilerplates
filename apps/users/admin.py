@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
-from apps.users.models import MyUser
+from apps.users.models import User
 
 
 class UserCreationForm(forms.ModelForm):
@@ -16,7 +16,7 @@ class UserCreationForm(forms.ModelForm):
     )
 
     class Meta:
-        model = MyUser
+        model = User
         fields = ('email',)
 
     def clean_password2(self):
@@ -44,7 +44,7 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = MyUser
+        model = User
         fields = ('email', 'password', 'is_active', 'is_superuser')
 
     def clean_password(self):
@@ -54,7 +54,7 @@ class UserChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-@admin.register(MyUser)
+@admin.register(User)
 class UserAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm

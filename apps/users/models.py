@@ -4,7 +4,7 @@ from django.contrib.auth.models import (
 )
 
 
-class MyUserManager(BaseUserManager):
+class UserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
         Creates and saves a User with the given email, date of
@@ -36,7 +36,7 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-class MyUser(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -45,7 +45,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    objects = MyUserManager()
+    objects = UserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
