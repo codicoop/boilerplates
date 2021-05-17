@@ -43,3 +43,17 @@ services:
       - POSTGRES_HOST_AUTH_METHOD=trust
     networks:
       - develop_projectname_network
+
+  develop_projectname_nginx:
+    container_name: develop_projectname_nginx
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d
+      - ../:/srv
+    ports:
+      # To run multiple projects at once, change it to 8002:80 etc.
+      - 8001:80
+    depends_on:
+      - develop_projectname_app
+    networks:
+      - develop_projectname_network
