@@ -34,7 +34,9 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# If you enable this try a makemigrations to make sure the third party
+# packages are not generating migrations.
+# DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # SMTP
 EMAIL_HOST = env('EMAIL_HOST')

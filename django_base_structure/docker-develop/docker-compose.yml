@@ -17,9 +17,7 @@ services:
     # The WSGI application name is the django app name you chose when doing django-admin startproject.
     command: gunicorn conf.wsgi:application --bind 0.0.0.0:8000 --reload
     volumes:
-      - ../:/srv
-    ports:
-      - 8060:8000
+      - ../src/:/srv
     depends_on:
       - develop_projectname_db
     #entrypoint: ["sh", "-c", "sleep 2073600"]

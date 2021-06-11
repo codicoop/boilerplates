@@ -1,9 +1,9 @@
-conf/.env
+src/conf/.env
 .idea/
 .vscode/
 static
 __pycache__
-conf/maintenance_mode_state.txt
+src/conf/maintenance_mode_state.txt
 
 # Using this for pyenv in development environment.
 .python-version

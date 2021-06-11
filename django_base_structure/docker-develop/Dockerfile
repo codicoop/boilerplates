@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM python:3.9
 
 # When it's building and it reaches this point, the docker-compose didn't set up the volumes yet.
 # So poetry install it's going to fail without copying the files.
