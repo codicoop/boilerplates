@@ -7,3 +7,4 @@ src/conf/maintenance_mode_state.txt
 
 # Using this for pyenv in development environment.
 .python-version
+docker/compose-*
