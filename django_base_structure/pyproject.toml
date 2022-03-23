@@ -1,0 +1,17 @@
+[tool.black]
+exclude = "migrations"
+
+[tool.poetry]
+name = "codicoop_boilerplate"
+version = "0.1.0"
+description = "Boilerplate for Djano projects."
+authors = ["codicoop"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+coverage = "^6.3"
+pytest = "^7.1"
+pytest-cov = "^3.0"
+pytest-sugar = "^0.9.4"

@@ -1,3 +1,5 @@
 .idea/
 .vscode/
 __pycache__
+/django_base_structure/poetry.lock
+/django_base_structure/.coverage.py39
