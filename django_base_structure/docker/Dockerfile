@@ -1,29 +1,29 @@
-FROM python:3.9.2-slim as python-base
+FROM python:3.10.3-slim as python-base
 
-    # ensures that the python output is sent straight to terminal
+# ensures that the python output is sent straight to terminal
 ENV PYTHONUNBUFFERED=1 \
-    # install a handler for SIGSEGV, SIGFPE, SIGABRT, SIGBUS and SIGILL signals
-    # to dump the Python traceback
-    PYTHONFAULTHANDLER=1 \
-    # a random value is used to seed the hashes of str and bytes objects
-    PYTHONHASHSEED=random \
-    # pip
-    PIP_NO_CACHE_DIR=off \
-    PIP_DISABLE_PIP_VERSION_CHECK=on \
-    PIP_DEFAULT_TIMEOUT=100 \
-    # poetry:
-    POETRY_VERSION=1.1.6 \
-    # make poetry install to this location
-    POETRY_HOME="/opt/poetry" \
-    # make poetry create the virtual environment in the project's root
-    # it gets named `.venv`
-    POETRY_VIRTUALENVS_IN_PROJECT=true \
-    # do not ask any interactive question
-    POETRY_NO_INTERACTION=1 \
-    # paths
-    # this is where our requirements + virtual environment will live
-    PYSETUP_PATH="/opt/pysetup" \
-    VENV_PATH="/opt/pysetup/.venv"
+  # install a handler for SIGSEGV, SIGFPE, SIGABRT, SIGBUS and SIGILL signals
+  # to dump the Python traceback
+  PYTHONFAULTHANDLER=1 \
+  # a random value is used to seed the hashes of str and bytes objects
+  PYTHONHASHSEED=random \
+  # pip
+  PIP_NO_CACHE_DIR=off \
+  PIP_DISABLE_PIP_VERSION_CHECK=on \
+  PIP_DEFAULT_TIMEOUT=100 \
+  # poetry:
+  POETRY_VERSION=1.1.13 \
+  # make poetry install to this location
+  POETRY_HOME="/opt/poetry" \
+  # make poetry create the virtual environment in the project's root
+  # it gets named `.venv`
+  POETRY_VIRTUALENVS_IN_PROJECT=true \
+  # do not ask any interactive question
+  POETRY_NO_INTERACTION=1 \
+  # paths
+  # this is where our requirements + virtual environment will live
+  PYSETUP_PATH="/opt/pysetup" \
+  VENV_PATH="/opt/pysetup/.venv"
 
 # prepend poetry and venv to path
 ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
@@ -31,7 +31,7 @@ ENV PATH="$POETRY_HOME/bin:$VENV_PATH/bin:$PATH"
 # `builder-base` stage is used to build deps + create our virtual environment
 FROM python-base as builder-base
 RUN set -x \
-    # deps for installing poetry
+  # deps for installing poetry
   && buildDeps=" \
   curl \
   " \
