@@ -13,35 +13,10 @@ services:
       context: ..
       dockerfile: ./docker/Dockerfile
       target: development
-    environment:
-      - DEBUG=true
-      - SECRET_KEY=
-      - ALLOWED_HOSTS=localhost,127.0.0.1
-      - ABSOLUTE_URL=http://localhost:8000
-      # DB
-      - DB_NAME=
-      - DB_USER=
-      - DB_PASSWORD=
-      - DB_HOST=
-      - DB_PORT=
-      # SMTP
-      - EMAIL_HOST=
-      - EMAIL_PORT=
-      - EMAIL_USE_SSL=false
-      - EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
-      - MAILING_MANAGER_DEFAULT_FROM=
-      # Wasabi cloud storage configuration
-      - AWS_ACCESS_KEY_ID=
-      - AWS_SECRET_ACCESS_KEY=
-      - AWS_STORAGE_BUCKET_NAME=
-      - AWS_S3_ENDPOINT_URL=
-      - AWS_DEFAULT_ACL=public-read
-      - AWS_S3_BASE_DOMAIN=s3.eu-central-1.wasabisys.com
-      - AWS_PUBLIC_MEDIA_LOCATION=media/public
-      - AWS_PRIVATE_MEDIA_LOCATION=media/private
+    env_file: ./settings/develop/settings.env
     command: gunicorn conf.wsgi:application --bind 0.0.0.0:8000 --reload
     volumes:
-      - ../:/srv
+      - ../src:/srv
     depends_on:
       - develop_project_name_db
     networks:
@@ -60,7 +35,7 @@ services:
 
   develop_project_name_db:
     container_name: develop_project_name_db
-    image: postgres:12.3
+    image: postgres:14
     environment:
       - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
